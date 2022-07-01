@@ -2,7 +2,7 @@ import React from "react";
 import uniqid from 'uniqid';
 
 
-const Table = ({ className, header, body, rowHandler, data }) => {
+const Table = ({ className, header, body, data, rowHandler, hoverEnterHandler, hoverLeaveHandler}) => {
 
     return (
         <table
@@ -25,6 +25,8 @@ const Table = ({ className, header, body, rowHandler, data }) => {
                         <tr
                             key={uniqid()}
                             onClick={rowHandler ? rowHandler : null}
+                            onMouseEnter={hoverEnterHandler ? hoverEnterHandler : null}
+                            // onMouseLeave={hoverLeaveHandler ? hoverLeaveHandler : null}
                             style={rowHandler ? { cursor: "pointer" } : null}
                             data={data[index]}
                         >

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MixedChart from "../../components/Elements/MixedChart/MixedChart";
+import PieChart from "../../components/Elements/PieChart/PieChart";
 import Table from "../../components/Elements/Table/Table";
+import VerticalBarChart from "../../components/Elements/VerticalBarChart/VerticalBarChart";
 import { getLogs } from "../../utils/api/api";
-
 
 
 const Project = () => {
@@ -11,12 +12,15 @@ const Project = () => {
     let params = useParams()
     const [isLogged, setIsLogged] = useState(true);
     const [logs, setLogs] = useState()
+    const [details, setDetails] = useState(null)
+
 
     const getTableHeaders = () => {
 
         return [
             "Version",
             "Scan Coverage",
+            "Scan Coverage LOC",
             "Total Files",
             "Good Files",
             "Partially Good Files",
@@ -31,6 +35,7 @@ const Project = () => {
             [
                 item.version,
                 item.scanCoverage,
+                item.scanCoverageLOC,
                 item.totalFiles,
                 item.goodFiles,
                 item.partiallyGoodFiles,
@@ -93,7 +98,7 @@ const Project = () => {
         console.log(data)
         return data;
     }
-    
+
     const getFileData = (list) => {
 
         let data = [
@@ -113,6 +118,28 @@ const Project = () => {
         alert(parent.getAttribute('data'));
     }
 
+    const hoverHandler = (event) => {
+
+        const target = event.target;
+        const parent = target.parentElement;
+        
+        const obj = JSON.parse(parent.getAttribute('data'))
+        
+        if(details){
+            const isDifferentObject = JSON.stringify(details) !== JSON.stringify(obj);
+            if(isDifferentObject){
+                setDetails(obj)
+            }
+        }
+        else{
+            setDetails(obj)
+        }
+       
+        
+
+        
+    }
+
 
     useEffect(() => {
         (async () => {
@@ -126,9 +153,9 @@ const Project = () => {
 
             }
         })()
-    }, [isLogged])
+    }, [isLogged, params])
 
-    const labels = ['Partially Good Files', 'Bad Files', ]
+    const labels = ['Partially Good Files', 'Bad Files',]
     const types = ["bar", "bar"];
     const data1 = [1, 2, 3, 4, 5, 6, 7];
     const data2 = data1.map(item => item * 2)
@@ -142,32 +169,56 @@ const Project = () => {
                 (
                     logs ?
                         (<>
-                            <p>{logs[0].project}: {logs[0].language} </p>
-
-                            <p>{JSON.stringify(logs)}</p>
-
-                            <MixedChart className={"w-50"}
-                                labels={['Scan Coverage %', 'Scan Coverage LOC %']}
-                                types={["line", "line"]}
-                                timeSlices={getTimeSlices(logs)}
-                                data={getCoverageData(logs)} />
-
-                            <MixedChart className={"w-50"}
-                            labels={['Partially Good Files', 'Bad Files', ]}
-                            timeSlices={getTimeSlices(logs)} 
-                            types={["bar", "bar"]}
-                            data={getFileData(logs)} />
+                        
+                        <h1 class="display-6">{logs[0].project}: {logs[0].language}</h1>
                             
 
-                            <Table
+                            {/* <p>{JSON.stringify(logs)}</p> */}
+                            
+                            
 
+                            <div className={"d-flex justify-content-center align-items-center mb-4"}>
+                                <MixedChart className={"w-50"}
+                                    labels={['Scan Coverage %', 'Scan Coverage LOC %']}
+                                    types={["line", "line"]}
+                                    timeSlices={getTimeSlices(logs)}
+                                    data={getCoverageData(logs)} />
+
+                                <MixedChart className={"w-50"}
+                                    labels={['Partially Good Files', 'Bad Files',]}
+                                    timeSlices={getTimeSlices(logs)}
+                                    types={["bar", "bar"]}
+                                    data={getFileData(logs)} />
+                            </div>
+
+                            <Table
                                 rowHandler={rowHandler}
                                 header={getTableHeaders()}
                                 body=
                                 {getTableBody(logs)}
                                 data=
                                 {getTableData(logs)}
+                                hoverEnterHandler={hoverHandler}
                             />
+                            {details &&
+                                <>
+                                    <div className={"card mb-4 p-3 d-flex flex-row align-items-center"}>
+                                        <h1 class="display-6">{details.version}</h1>
+
+                                        <PieChart className={"w-25"} title={"Scan Coverage %"}
+                                            labels={['Scanned', 'Not Scanned']}
+                                            dataset={[details.scanCoverage, 100 - details.scanCoverage]} />
+
+                                        <VerticalBarChart className={"w-50"} title={"Problematic Files"}
+                                            labels={["Partially Good Files", "Bad Files"]}
+                                            data={[[details.partiallyGoodFiles], [details.badFiles]]}
+                                            timeSlices={[""]} />
+
+                                    </div>
+                                </>
+
+                            }
+
 
                         </>
                         )
