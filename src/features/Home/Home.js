@@ -35,10 +35,10 @@ const Home = () => {
 
     const searchHandler = (value) => {
         console.log(value)
-        setSearchValue(value)        
+        setSearchValue(value)
     }
 
-    const getFilteredLogs = (latestLogs,searchValue) => {
+    const getFilteredLogs = (latestLogs, searchValue) => {
         return latestLogs.filter(
             (item) => {
                 return item.project.toLowerCase().includes(searchValue.toLowerCase())
@@ -61,21 +61,13 @@ const Home = () => {
         <>
             {isLogged ?
                 (
-                    (
-                        latestLogs ?
-                            (<>
-                                <div className={"d-flex justify-content-center align-items-center mb-4"}>
-                                    
-                                    <Input
-                                        value={searchValue}
-                                        handler={searchHandler}
-                                        placeholder={"Find a project.."}
-                                        className={"w-50"} />
-                                </div>
-                                <HomePanel latestLogs={getFilteredLogs(latestLogs,searchValue)}/>
-                            </>)
-                            : <p>Loading</p>
-                    )
+                    latestLogs ?
+                        <HomePanel
+                            searchValue={searchValue}
+                            searchHandler={searchHandler}
+                            latestLogs={getFilteredLogs(latestLogs, searchValue)} />
+                        :
+                        <p>Loading</p>
                 )
                 : <SignUp errorMsg={errorMsg} submitHandler={logInSubmitHandler} />}
         </>

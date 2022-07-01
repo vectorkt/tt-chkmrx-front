@@ -12,7 +12,7 @@ const HomeRow = ({ item }) => {
                 labels={['Scanned', 'Not Scanned']}
                 dataset={[item.scanCoverage, 100 - item.scanCoverage]} />
 
-            <VerticalBarChart className={"w-50"} title={"Files"}
+            <VerticalBarChart className={"w-50"} title={"Problematic Files"}
                 labels={["Partially Good Files", "Bad Files"]}
                 data={[[item.partiallyGoodFiles], [item.badFiles]]}
                 timeSlices={[item.version]} />
