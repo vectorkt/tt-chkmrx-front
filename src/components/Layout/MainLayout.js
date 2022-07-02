@@ -18,8 +18,7 @@ const MainLayout = () => {
 
 
     useEffect(() => {
-        if (loginState.isLogged) {
-            console.log("navbar called")
+        if (loginState.isLogged) {            
             fetchTitles()
         }
         else{

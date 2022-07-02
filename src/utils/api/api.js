@@ -1,23 +1,11 @@
 import axios from "axios";
 import sha256 from 'crypto-js/sha256';
 import Base64 from 'crypto-js/enc-base64';
-import Cookies from 'universal-cookie';
+import { getAuthCookie } from "../cookies/cookies";
 
 
-const getAuthCookie = () => {
-    const cookies = new Cookies();
-    try {
-        console.log(cookies.get('auth'))
-        return cookies.get('auth');
-    }
-    catch (err) {
-        console.log(err)
-    }
-}
 
 const getTitles = async () => {
-    console.log("get titles called")
-    console.log(getAuthCookie())
 
     try {
         const response = await axios

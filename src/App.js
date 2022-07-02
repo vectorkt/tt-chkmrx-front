@@ -6,15 +6,14 @@ import MainLayout from './components/Layout/MainLayout';
 import AppRoutes from './routes/AppRoutes';
 import { createContext, useState } from 'react';
 
-export const LoginContext = createContext(); 
+export const LoginContext = createContext();
 
 function App() {
 
-  
   const [loginState, setLoginState] = useState(
     {
-      isLogged:false,
-      isLoading:false,
+      isLogged: false,
+      isLoading: false,
     }
   );
 
@@ -23,7 +22,7 @@ function App() {
   return (
     // <APItest/>
     // <TokenTest/>
-    <LoginContext.Provider {...{value}}>
+    <LoginContext.Provider {...{ value }}>
       <AppRoutes />
     </LoginContext.Provider>
   );

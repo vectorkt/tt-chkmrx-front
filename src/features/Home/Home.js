@@ -1,28 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import Input from "../../components/Elements/Input/Input";
 import Loading from "../../components/Elements/Loading/Loading";
-import { getAuth, getLogs } from "../../utils/api/api";
+import { getLogs } from "../../utils/api/api";
 import HomePanel from "./HomePanel/HomePanel";
 import { isListDifferent } from "./utils/homeUtils";
-
 import { LoginContext } from "../../App";
 import SignIn from "../../components/SignIn/SignIn";
-
-
+import { getAuthCookie, getLoginCookie } from "../../utils/cookies/cookies";
 
 const Home = () => {
 
-
     const { loginState, setLoginState } = useContext(LoginContext);
-
-    
-    // const [isLogged, setIsLogged] = useState(false);
     const [latestLogs, setLatestLogs] = useState(null);
     const [filteredLogs, setFilteredLogs] = useState(null);
     const [searchValue, setSearchValue] = useState('');
-
-
-
 
     const fetchLogs = async () => {
         if (loginState.isLogged) {
@@ -32,13 +23,9 @@ const Home = () => {
         }
     }
 
-
-
     useEffect(() => {
         fetchLogs()
     }, [loginState.isLogged])
-
-
 
     const updateFilteredLogs = () => {
 
@@ -61,6 +48,12 @@ const Home = () => {
     }
         , [searchValue])
 
+
+    useEffect((()=>{
+        console.log("att the time")
+        console.log(getAuthCookie())
+        console.log(getLoginCookie())
+    }))    
 
     return (
         <>
@@ -85,7 +78,6 @@ const Home = () => {
                         <Loading size={"10rem"} />
                 )
                 :
-                
                 <SignIn />}
         </>
     )

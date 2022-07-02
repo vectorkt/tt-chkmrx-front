@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { LoginContext } from "../../App";
+import { removeAuthCookie, removeLoginCookie } from "../../utils/cookies/cookies";
 
 const SignOut = () => {
 
     const { loginState, setLoginState } = useContext(LoginContext);
 
     const signOutHandler = () => {
+        removeLoginCookie()
+        removeAuthCookie()
         setLoginState({...loginState, isLogged: false})
     }
 
