@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Input from "../../components/Elements/Input/Input";
-import MixedChart from "../../components/Elements/MixedChart/MixedChart";
-import PieChart from "../../components/Elements/PieChart/PieChart";
-import VerticalBarChart from "../../components/Elements/VerticalBarChart/VerticalBarChart";
 import SignUp from "../../components/SignUp/SignUp";
 import { getAuth, getLogs } from "../../utils/api/api";
 import HomePanel from "./HomePanel/HomePanel";
-import HomeRow from "./HomeRow/HomeRow";
 
 const Home = () => {
 
@@ -49,7 +44,6 @@ const Home = () => {
     useEffect(() => {
         (async () => {
             if (isLogged) {
-                console.log("called");
                 const response = await getLogs();
                 setLatestLogs(response);
             }

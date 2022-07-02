@@ -2,12 +2,12 @@ import React from "react";
 import uniqid from 'uniqid';
 
 
-const Table = ({ className, header, body, data, rowHandler, hoverEnterHandler, hoverLeaveHandler}) => {
+const Table = ({ className, header, body, data, rowClickHandler, hoverEnterHandler, hoverLeaveHandler }) => {
 
     return (
         <table
             className={
-                `${className ? "table table-striped " + className : "table table-striped"}${rowHandler ? " table-hover" : ""}`
+                `${className ? "table table-striped " + className : "table table-striped"}${(rowClickHandler || hoverEnterHandler) ? " table-hover" : ""}`
             }
         >
             <thead>
@@ -24,10 +24,10 @@ const Table = ({ className, header, body, data, rowHandler, hoverEnterHandler, h
                     (row, index) =>
                         <tr
                             key={uniqid()}
-                            onClick={rowHandler ? rowHandler : null}
+                            onClick={rowClickHandler ? rowClickHandler : null}
                             onMouseEnter={hoverEnterHandler ? hoverEnterHandler : null}
                             // onMouseLeave={hoverLeaveHandler ? hoverLeaveHandler : null}
-                            style={rowHandler ? { cursor: "pointer" } : null}
+                            style={(rowClickHandler || hoverEnterHandler) ? { cursor: "pointer" } : null}
                             data={data[index]}
                         >
                             {row.map(
