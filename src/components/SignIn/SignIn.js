@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { LoginContext } from "../../App";
 import { getAuth } from "../../utils/api/api";
-import { setAuthCookie } from "../../utils/cookies/cookies";
+import { setAuthCookie, setLoginCookie } from "../../utils/cookies/cookies";
 
 const SignIn = () => {
 
@@ -17,7 +17,8 @@ const SignIn = () => {
         const response = await getAuth(email, password);
 
         if (response.success) {
-            setAuthCookie(response.accessToken)
+            setAuthCookie(response.accessToken);
+            setLoginCookie(true);
             setLoginState({ ...loginState, isLogged: true });
         }
         else {

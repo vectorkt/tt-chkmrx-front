@@ -28,7 +28,6 @@ const Home = () => {
     }, [loginState.isLogged])
 
     const updateFilteredLogs = () => {
-
         if (isListDifferent(searchValue, latestLogs, filteredLogs)) {
 
             const filtered = latestLogs.filter(
@@ -49,11 +48,11 @@ const Home = () => {
         , [searchValue])
 
 
-    useEffect((()=>{
-        console.log("att the time")
-        console.log(getAuthCookie())
-        console.log(getLoginCookie())
-    }))    
+    // useEffect((()=>{
+    //     console.log("att the time")
+    //     console.log(getAuthCookie())
+    //     console.log(getLoginCookie())
+    // }))    
 
     return (
         <>

@@ -5,6 +5,7 @@ import TokenTest from './test/components/TokenTest/TokenTest';
 import MainLayout from './components/Layout/MainLayout';
 import AppRoutes from './routes/AppRoutes';
 import { createContext, useState } from 'react';
+import { getAuthCookie, getLoginCookie } from './utils/cookies/cookies';
 
 export const LoginContext = createContext();
 
@@ -12,7 +13,7 @@ function App() {
 
   const [loginState, setLoginState] = useState(
     {
-      isLogged: false,
+      isLogged: getLoginCookie() === "true",
       isLoading: false,
     }
   );
