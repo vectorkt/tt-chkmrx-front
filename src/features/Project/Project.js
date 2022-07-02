@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 import { getLogs } from "../../utils/api/api";
 import { generateTextFile } from "./utils/projectUtils";
@@ -66,7 +66,9 @@ const Project = () => {
 
                 )
                 :
-                <p>Redirect?</p>
+                <Navigate replace to="/home" />
+                // <Navigate replace to="/home" />
+                // <Redirect to="/" />
                 // <SignUp errorMsg={errorMsg} submitHandler={logInSubmitHandler} />
             }
         </>

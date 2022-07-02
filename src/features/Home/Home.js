@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Input from "../../components/Elements/Input/Input";
 import Loading from "../../components/Elements/Loading/Loading";
-import SignUp from "../../components/SignUp/SignUp";
 import { getAuth, getLogs } from "../../utils/api/api";
 import HomePanel from "./HomePanel/HomePanel";
 import { isListDifferent } from "./utils/homeUtils";
 import Cookies from 'universal-cookie';
 import { LoginContext } from "../../App";
+import SignIn from "../../components/SignIn/SignIn";
 
 
 
@@ -113,7 +113,8 @@ const Home = () => {
                         <Loading size={"10rem"} />
                 )
                 :
-                <SignUp errorMsg={errorMsg} submitHandler={logInSubmitHandler} />}
+                
+                <SignIn errorMsg={errorMsg} submitHandler={logInSubmitHandler} />}
         </>
     )
 }
