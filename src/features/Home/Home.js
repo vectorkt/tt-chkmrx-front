@@ -32,16 +32,18 @@ const Home = () => {
         }
     }
 
-    
+    const fetchLogs = async () => {
+        if (isLogged) {
+            const response = await getLogs();
+            setLatestLogs(response);
+            setFilteredLogs(response);
+        }
+    }
+
+
 
     useEffect(() => {
-        (async () => {
-            if (isLogged) {
-                const response = await getLogs();
-                setLatestLogs(response);
-                setFilteredLogs(response);
-            }
-        })()
+        fetchLogs()
     }, [isLogged])
 
 

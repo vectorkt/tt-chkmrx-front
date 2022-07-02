@@ -37,17 +37,20 @@ const Project = () => {
         }
     }
 
+
+    const fetchLogs = async () => {
+
+        if (isLogged && params.project) {
+
+            const response = await getLogs(params.project);
+
+            setLogs(response)
+            setDetails(null)
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-
-            if (isLogged && params.project) {
-
-                const response = await getLogs(params.project);
-
-                setLogs(response)
-                setDetails(null)
-            }
-        })()
+        fetchLogs()
     }, [isLogged, params])
 
 

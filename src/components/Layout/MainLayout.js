@@ -10,30 +10,18 @@ import Navbar from "../Elements/Navbar/Navbar";
 
 
 const MainLayout = () => {
-
-    const [token, setToken] = useState();
-
+    
     const [titles, setTitles] = useState();
 
+    const fetchTitles = async () => {
+        const data = await getTitles();            
+        setTitles(data);
+    }
+
+
     useEffect(() => {
-        (async () => {
-            const data = await getTitles();            
-            setTitles(data);
-        })()
+        fetchTitles()
     }, [])
-
-
-    const shoot = () => {
-        alert("Great Shot!");
-    }
-
-    const rowHandler = (event) => {
-        var target = event.target;
-        var parent = target.parentElement;
-        alert(parent.getAttribute('data'));
-    }
-
-    const [inputVal, setInputVal] = useState('')
 
 
     return (
