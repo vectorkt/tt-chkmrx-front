@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import uniqid from 'uniqid';
 import SignOut from "../../SignOut/SignOut";
-
+import FadeIn from 'react-fade-in';
 
 const Navbar = ({ isLoggedIn, titles }) => {
 
@@ -16,18 +16,22 @@ const Navbar = ({ isLoggedIn, titles }) => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
+
                     <ul className="navbar-nav">
+
                         <li className="nav-item">
                             <Link className="nav-link active" to="/">{isLoggedIn ? "Latest Reports" : "Sign In"}</Link>
                             {/* <a className="nav-link active" aria-current="page" href="#">Home</a> */}
                         </li>
                         {titles && titles.map(
                             title =>
-                                <li key={uniqid()} className="nav-item">
-                                    <Link className="nav-link" to={`/projects/${title}`}>{title}</Link>
-                                </li>
-
+                                <FadeIn transitionDuration={500} delay={250}>
+                                    <li key={uniqid()} className="nav-item">
+                                        <Link className="nav-link" to={`/projects/${title}`}>{title}</Link>
+                                    </li>
+                                </FadeIn>
                         )}
+
                     </ul>
 
                     {isLoggedIn ?

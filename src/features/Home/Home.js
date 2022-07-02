@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Input from "../../components/Elements/Input/Input";
 import Loading from "../../components/Elements/Loading/Loading";
 import { getLogs } from "../../utils/api/api";
@@ -25,7 +25,7 @@ const Home = () => {
         if (loginState.isLogged) {
             const response = await getLogs();
             setLatestLogs(response);
-            setFilteredLogs(response);            
+            setFilteredLogs(response);
         }
     }
 
