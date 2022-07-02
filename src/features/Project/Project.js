@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { getLogs } from "../../utils/api/api";
 import { generateTextFile } from "./utils/projectUtils";
 import ProjectPanel from "./ProjectPanel/ProjectPanel";
 import Loading from "../../components/Elements/Loading/Loading";
+import { LoginContext } from "../../App";
 
 const Project = () => {
 
     let params = useParams()
-    const [isLogged, setIsLogged] = useState(true);
+    const { loginState, setLoginState } = useContext(LoginContext)
     const [logs, setLogs] = useState()
     const [details, setDetails] = useState(null)
 
@@ -40,7 +41,7 @@ const Project = () => {
 
     const fetchLogs = async () => {
 
-        if (isLogged && params.project) {
+        if (loginState.isLogged && params.project) {
 
             const response = await getLogs(params.project);
 
@@ -51,12 +52,12 @@ const Project = () => {
 
     useEffect(() => {
         fetchLogs()
-    }, [isLogged, params])
+    }, [loginState.isLogged, params])
 
 
     return (
         <>
-            {isLogged ?
+            {loginState.isLogged ?
                 (
                     logs ?
                         <ProjectPanel {...{ logs, details, rowClickHandler, hoverHandler }} />
