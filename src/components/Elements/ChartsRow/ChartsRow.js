@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PieChart from "../PieChart/PieChart";
 import VerticalBarChart from "../VerticalBarChart/VerticalBarChart";
 
@@ -30,4 +30,4 @@ const ChartsRow = ({ title, timeSlice, item, }) => {
 }
 
 
-export default ChartsRow
+export default memo(ChartsRow)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
@@ -61,4 +61,4 @@ const PieChart = ({ className, title, labels, dataset }) => {
 
 }
 
-export default PieChart;
+export default memo(PieChart);

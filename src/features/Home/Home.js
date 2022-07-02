@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Input from "../../components/Elements/Input/Input";
 import Loading from "../../components/Elements/Loading/Loading";
 import SignUp from "../../components/SignUp/SignUp";
 import { getAuth, getLogs } from "../../utils/api/api";
@@ -9,6 +10,7 @@ const Home = () => {
     const [errorMsg, setErrorMsg] = useState();
     const [isLogged, setIsLogged] = useState(true);
     const [latestLogs, setLatestLogs] = useState(null);
+    const [filteredLogs, setFilteredLogs] = useState(null);
     const [searchValue, setSearchValue] = useState('');
 
     const logInSubmitHandler = async (event, email, password) => {
@@ -30,26 +32,54 @@ const Home = () => {
     }
 
     const searchHandler = (value) => {
-        console.log(value)
+
         setSearchValue(value)
     }
-
-    const getFilteredLogs = (latestLogs, searchValue) => {
-        return latestLogs.filter(
-            (item) => {
-                return item.project.toLowerCase().includes(searchValue.toLowerCase())
-            })
-    }
-
 
     useEffect(() => {
         (async () => {
             if (isLogged) {
                 const response = await getLogs();
-                //setLatestLogs(response);
+                setLatestLogs(response);
+                setFilteredLogs(response);
             }
         })()
     }, [isLogged])
+
+
+    const isListDifferent = () => {
+        const projects = latestLogs.map(l => l.project);
+
+        const filteredProjects = filteredLogs
+            .map(l => l.project)
+            .filter(p => p.toLowerCase().includes(searchValue.toLowerCase()));
+
+        const isListDifferent = JSON.stringify(projects) !== JSON.stringify(filteredProjects);
+
+        return isListDifferent;
+
+    }
+
+    const updateFilteredLogs = () => {   
+
+        if (isListDifferent()) {
+
+            const filtered = latestLogs.filter(
+                (item) => {
+                    return item.project.toLowerCase().includes(searchValue.toLowerCase())
+                })
+
+            setFilteredLogs(filtered);
+        }
+    }
+
+    useEffect(() => {
+
+        if (isLogged && latestLogs) {
+            updateFilteredLogs()
+        }
+    }
+        , [searchValue])
 
 
     return (
@@ -57,10 +87,24 @@ const Home = () => {
             {isLogged ?
                 (
                     latestLogs ?
-                        <HomePanel
-                            searchValue={searchValue}
-                            searchHandler={searchHandler}
-                            latestLogs={getFilteredLogs(latestLogs, searchValue)} />
+
+                        <>
+                            <div className={"d-flex justify-content-center align-items-center mb-4"}>
+                                <Input
+                                    value={searchValue}
+                                    handler={searchHandler}
+                                    placeholder={"Find a project.."}
+                                    className={"w-50"}
+                                />
+                            </div>
+                            <HomePanel
+                                // searchValue={searchValue}
+                                // searchHandler={searchHandler}
+                                // latestLogs={getFilteredLogs(latestLogs, searchValue)}
+                                {...{ filteredLogs }}
+                            />
+                        </>
+
                         :
                         <Loading size={"10rem"} />
                 )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -69,4 +69,4 @@ const VerticalBarChart = ({ className, title, labels, data, timeSlices }) => {
 }
 
 
-export default VerticalBarChart;
+export default memo(VerticalBarChart);
