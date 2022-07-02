@@ -3,8 +3,8 @@ import Input from "../Elements/Input/Input";
 
 const SignUp = ({ errorMsg, submitHandler }) => {
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     return (
         <form className="w-25">

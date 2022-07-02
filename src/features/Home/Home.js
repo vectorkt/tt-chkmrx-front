@@ -5,14 +5,23 @@ import SignUp from "../../components/SignUp/SignUp";
 import { getAuth, getLogs } from "../../utils/api/api";
 import HomePanel from "./HomePanel/HomePanel";
 import { isListDifferent } from "./utils/homeUtils";
+import Cookies from 'universal-cookie';
+
 
 const Home = () => {
 
     const [errorMsg, setErrorMsg] = useState();
-    const [isLogged, setIsLogged] = useState(true);
+    const [isLogged, setIsLogged] = useState(false);
     const [latestLogs, setLatestLogs] = useState(null);
     const [filteredLogs, setFilteredLogs] = useState(null);
     const [searchValue, setSearchValue] = useState('');
+
+
+    const setAuthCookie = (token) => {
+
+        const cookies = new Cookies();
+        cookies.set('auth', token, { path: '/', sameSite: "strict" },);
+    }
 
     const logInSubmitHandler = async (event, email, password) => {
 
@@ -24,6 +33,7 @@ const Home = () => {
 
         if (response.success) {
             //set token here
+            setAuthCookie(response.accessToken)
             setIsLogged(true);
         }
         else {
