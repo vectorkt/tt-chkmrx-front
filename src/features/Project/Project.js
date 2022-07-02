@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getLogs } from "../../utils/api/api";
 import { generateTextFile } from "./utils/projectUtils";
 import ProjectPanel from "./ProjectPanel/ProjectPanel";
+import Loading from "../../components/Elements/Loading/Loading";
 
 const Project = () => {
 
@@ -13,11 +14,9 @@ const Project = () => {
     const [details, setDetails] = useState(null)
 
     const rowClickHandler = (event) => {
-        var target = event.target;
-        var parent = target.parentElement;
-
+        const target = event.target;
+        const parent = target.parentElement;
         generateTextFile(parent.getAttribute('data'));
-
     }
 
     const hoverHandler = (event) => {
@@ -59,7 +58,7 @@ const Project = () => {
                     logs ?
                         <ProjectPanel {...{ logs, details, rowClickHandler, hoverHandler }} />
                         :
-                        <p>Loading</p>
+                        <Loading size={"10rem"} />
 
                 )
                 :

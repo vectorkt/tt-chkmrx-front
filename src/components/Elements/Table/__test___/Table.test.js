@@ -20,7 +20,7 @@ test(
         render(
             <Table
                 className={"table-primary"}
-                rowHandler={rowHandlerMock}
+                rowClickHandler={rowHandlerMock}
                 header={["index", "First", "Last", "Handle"]}
                 body=
                 {[

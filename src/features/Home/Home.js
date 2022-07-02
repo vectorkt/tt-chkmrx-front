@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loading from "../../components/Elements/Loading/Loading";
 import SignUp from "../../components/SignUp/SignUp";
 import { getAuth, getLogs } from "../../utils/api/api";
 import HomePanel from "./HomePanel/HomePanel";
@@ -7,7 +8,7 @@ const Home = () => {
 
     const [errorMsg, setErrorMsg] = useState();
     const [isLogged, setIsLogged] = useState(true);
-    const [latestLogs, setLatestLogs] = useState();
+    const [latestLogs, setLatestLogs] = useState(null);
     const [searchValue, setSearchValue] = useState('');
 
     const logInSubmitHandler = async (event, email, password) => {
@@ -45,7 +46,7 @@ const Home = () => {
         (async () => {
             if (isLogged) {
                 const response = await getLogs();
-                setLatestLogs(response);
+                //setLatestLogs(response);
             }
         })()
     }, [isLogged])
@@ -61,9 +62,10 @@ const Home = () => {
                             searchHandler={searchHandler}
                             latestLogs={getFilteredLogs(latestLogs, searchValue)} />
                         :
-                        <p>Loading</p>
+                        <Loading size={"10rem"} />
                 )
-                : <SignUp errorMsg={errorMsg} submitHandler={logInSubmitHandler} />}
+                :
+                <SignUp errorMsg={errorMsg} submitHandler={logInSubmitHandler} />}
         </>
     )
 }
