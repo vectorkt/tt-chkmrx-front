@@ -18,7 +18,7 @@ const Navbar = ({ isLoggedIn, titles }) => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link active" to="/">{isLoggedIn ? "Latest Report" : "Sign In"}</Link>
+                            <Link className="nav-link active" to="/">{isLoggedIn ? "Latest Reports" : "Sign In"}</Link>
                             {/* <a className="nav-link active" aria-current="page" href="#">Home</a> */}
                         </li>
                         {titles && titles.map(

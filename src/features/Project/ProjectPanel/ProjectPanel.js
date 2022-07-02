@@ -7,7 +7,7 @@ import { getCoverageData, getFileData, getTableBody, getTableData, getTableHeade
 const ProjectPanel = ({ logs, details, rowClickHandler, hoverHandler }) => {
     return (
         <>
-            <h1 className={"display-6"}>{logs[0].project}: {logs[0].language}</h1>
+            <h1 className={"display-6 text-primary mb-4"}>{logs[0].project}: {logs[0].language}</h1>
 
             <div className={"card mb-4 p-3 d-flex flex-row justify-content-center align-items-center mb-4"}>
 
