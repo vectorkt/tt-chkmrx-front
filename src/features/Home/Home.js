@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Input from "../../components/Elements/Input/Input";
 import Loading from "../../components/Elements/Loading/Loading";
 import SignUp from "../../components/SignUp/SignUp";
@@ -6,12 +6,17 @@ import { getAuth, getLogs } from "../../utils/api/api";
 import HomePanel from "./HomePanel/HomePanel";
 import { isListDifferent } from "./utils/homeUtils";
 import Cookies from 'universal-cookie';
+import { LoginContext } from "../../App";
+
 
 
 const Home = () => {
 
+
+    const { loginState, setLoginState } = useContext(LoginContext);
+
     const [errorMsg, setErrorMsg] = useState();
-    const [isLogged, setIsLogged] = useState(false);
+    // const [isLogged, setIsLogged] = useState(false);
     const [latestLogs, setLatestLogs] = useState(null);
     const [filteredLogs, setFilteredLogs] = useState(null);
     const [searchValue, setSearchValue] = useState('');
@@ -26,15 +31,20 @@ const Home = () => {
     const logInSubmitHandler = async (event, email, password) => {
 
         event.preventDefault();
-        console.log("form called");
+
+        console.log("login state before:"+loginState)
+
         const response = await getAuth(email, password);
 
         console.log(response)
 
         if (response.success) {
             //set token here
+            console.log(JSON.stringify(loginState))
+            console.log("login state before:"+loginState.isLogged)
             setAuthCookie(response.accessToken)
-            setIsLogged(true);
+            // setIsLogged(true);                   
+            setLoginState({...loginState,isLogged:true});
         }
         else {
             console.log("wrong")
@@ -43,7 +53,7 @@ const Home = () => {
     }
 
     const fetchLogs = async () => {
-        if (isLogged) {
+        if (loginState.isLogged) {
             const response = await getLogs();
             setLatestLogs(response);
             setFilteredLogs(response);
@@ -54,7 +64,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchLogs()
-    }, [isLogged])
+    }, [loginState.isLogged])
 
 
 
@@ -73,7 +83,7 @@ const Home = () => {
 
     useEffect(() => {
 
-        if (isLogged && latestLogs) {
+        if (loginState.isLogged && latestLogs) {
             updateFilteredLogs()
         }
     }
@@ -82,7 +92,7 @@ const Home = () => {
 
     return (
         <>
-            {isLogged ?
+            {loginState.isLogged ?
                 (
                     latestLogs ?
 

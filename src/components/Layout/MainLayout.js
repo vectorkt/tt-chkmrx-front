@@ -1,17 +1,15 @@
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Outlet, Link } from "react-router-dom";
-import { getLogs, getTitles } from "../../utils/api/api";
-import Button from "../Elements/Button/Button";
-import Input from "../Elements/Input/Input";
-import Table from "../Elements/Table/Table";
+import React, { useContext, useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+import {  getTitles } from "../../utils/api/api";
 import Navbar from "../Elements/Navbar/Navbar";
+import { LoginContext } from "../../App";
 
 
 const MainLayout = () => {
     
     const [titles, setTitles] = useState();
+    const { loginState, setLoginState } = useContext(LoginContext)
 
     const fetchTitles = async () => {
         const data = await getTitles();            
@@ -20,13 +18,14 @@ const MainLayout = () => {
 
 
     useEffect(() => {
+        console.log("navbar called")
         fetchTitles()
-    }, [])
+    }, [loginState.isLogged])
 
 
     return (
         <>
-            {titles ? <Navbar isLoggedIn={true} titles={titles} /> : <p>Loading...</p>}
+            {titles ? <Navbar isLoggedIn={loginState.isLogged} titles={titles} /> : <p>Loading...</p>}
 
             <div className="container-md d-flex flex-column justify-content-center">
                 <p>Hello Layout</p>

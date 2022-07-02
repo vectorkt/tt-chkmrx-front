@@ -4,25 +4,28 @@ import Base64 from 'crypto-js/enc-base64';
 import Cookies from 'universal-cookie';
 
 
-const getAuthCookie = () =>{
+const getAuthCookie = () => {
     const cookies = new Cookies();
-    try{
+    try {
+        console.log(cookies.get('auth'))
         return cookies.get('auth');
     }
-    catch(err){
+    catch (err) {
         console.log(err)
     }
 }
 
 const getTitles = async () => {
+    console.log("get titles called")
+    console.log(getAuthCookie())
 
     try {
         const response = await axios
-            .post("http://localhost:4000/projects",
-
+            .post("http://localhost:4000/projecttitles",
+                {body:null},
                 {
                     headers: {
-                        // 'Authorization': 'Basic xxxxxxxxxxxxxxxxxxx',
+                        'Authorization': `Bearer ${getAuthCookie()}`,
                         'Content-Type': 'application/json'
                     }
                 }
@@ -41,14 +44,14 @@ const getLogs = async (project = "") => {
     const body = {
         "project": project
     };
-    
+
     try {
         const response = await axios
             .post("http://localhost:4000/logs",
                 body,
                 {
                     headers: {
-                        // 'Authorization': 'Basic xxxxxxxxxxxxxxxxxxx',
+                        'Authorization': `Bearer ${getAuthCookie()}`,
                         'Content-Type': 'application/json'
                     }
                 }
