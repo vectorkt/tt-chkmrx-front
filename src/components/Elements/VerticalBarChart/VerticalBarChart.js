@@ -69,4 +69,4 @@ const VerticalBarChart = ({ className, title, labels, data, timeSlices }) => {
 }
 
 
-export default memo(VerticalBarChart);
+export default VerticalBarChart;

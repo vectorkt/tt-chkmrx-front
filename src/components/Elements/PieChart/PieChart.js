@@ -61,4 +61,4 @@ const PieChart = ({ className, title, labels, dataset }) => {
 
 }
 
-export default memo(PieChart);
+export default PieChart;

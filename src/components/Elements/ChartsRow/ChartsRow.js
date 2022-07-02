@@ -30,4 +30,4 @@ const ChartsRow = ({ title, timeSlice, item, }) => {
 }
 
 
-export default memo(ChartsRow)
+export default ChartsRow
