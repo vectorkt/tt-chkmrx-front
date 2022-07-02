@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Input from "../../components/Elements/Input/Input";
 import Loading from "../../components/Elements/Loading/Loading";
 import { getLogs } from "../../utils/api/api";
@@ -15,11 +15,17 @@ const Home = () => {
     const [filteredLogs, setFilteredLogs] = useState(null);
     const [searchValue, setSearchValue] = useState('');
 
+    // const searchInput = useRef();
+
+    // const focusInput = () => {
+    //     searchInput.current.focus();
+    // };
+
     const fetchLogs = async () => {
         if (loginState.isLogged) {
             const response = await getLogs();
             setLatestLogs(response);
-            setFilteredLogs(response);
+            setFilteredLogs(response);            
         }
     }
 
@@ -63,6 +69,8 @@ const Home = () => {
                         <>
                             <div className={"d-flex justify-content-center align-items-center mb-4"}>
                                 <Input
+                                    // ref={searchInput}
+                                    autoFocus={true}
                                     value={searchValue}
                                     handler={(value) => setSearchValue(value)}
                                     placeholder={"Find a project.."}

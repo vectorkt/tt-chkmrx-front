@@ -1,9 +1,10 @@
 import React from "react";
 
 
-const Input = ({ type, value, handler, placeholder, className }) => {
+const Input = ({ type, autoFocus, value, handler, placeholder, className }) => {
     return (
         <input type={type}
+            autoFocus={autoFocus}
             className={`${className ? "form-control " + className : "form-control"}`}
             placeholder={placeholder}
             value={value}

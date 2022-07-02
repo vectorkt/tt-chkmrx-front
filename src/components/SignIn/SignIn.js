@@ -31,7 +31,7 @@ const SignIn = () => {
             <form className="card p-4 w-25">
                 <div className="mb-2">
                     <label htmlFor="exampleInputEmail1" className="form-label">User</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    <input autoFocus type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         value={email}
                         onChange={e => { setEmail(e.target.value) }}
                     />
