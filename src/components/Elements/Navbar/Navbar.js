@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import uniqid from 'uniqid';
+import SignOut from "../../SignOut/SignOut";
 
 
 const Navbar = ({ isLoggedIn, titles }) => {
@@ -17,7 +18,7 @@ const Navbar = ({ isLoggedIn, titles }) => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link active" to="/">{isLoggedIn ? "Home" : "Latest Report"}</Link>
+                            <Link className="nav-link active" to="/">{isLoggedIn ? "Latest Report" : "Sign In"}</Link>
                             {/* <a className="nav-link active" aria-current="page" href="#">Home</a> */}
                         </li>
                         {titles && titles.map(
@@ -30,12 +31,7 @@ const Navbar = ({ isLoggedIn, titles }) => {
                     </ul>
 
                     {isLoggedIn ?
-                        <ul className="navbar-nav ms-auto">
-                            <li className="nav-item">
-                                <Link className="nav-link active" to="/">Logout</Link>
-                                {/* <a className="nav-link active" aria-current="page" href="#">Home</a> */}
-                            </li>
-                        </ul>
+                        <SignOut />
                         :
                         null
                     }

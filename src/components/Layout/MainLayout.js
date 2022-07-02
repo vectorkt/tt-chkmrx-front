@@ -22,9 +22,11 @@ const MainLayout = () => {
             console.log("navbar called")
             fetchTitles()
         }
-    }, [loginState.isLogged])
+        else{
+            setTitles(null)
+        }
 
-    
+    }, [loginState.isLogged])
 
 
     return (

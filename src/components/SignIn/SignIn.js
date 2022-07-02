@@ -1,10 +1,47 @@
-import React, { useState } from "react"
-import Input from "../Elements/Input/Input";
+import React, { useContext, useState } from "react"
+import { LoginContext } from "../../App";
+import Cookies from 'universal-cookie';
+import { getAuth } from "../../utils/api/api";
 
-const SignIn = ({ errorMsg, submitHandler }) => {
+const SignIn = () => {
 
+    const { loginState, setLoginState } = useContext(LoginContext);
+    const [errorMsg, setErrorMsg] = useState();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const setAuthCookie = (token) => {
+
+        const cookies = new Cookies();
+        cookies.set('auth', token, { path: '/', sameSite: "strict" },);
+    }
+
+
+    const logInSubmitHandler = async (event) => {
+
+        event.preventDefault();
+
+        console.log("login state before:" + loginState)
+
+        const response = await  getAuth(email, password);
+
+        console.log(response)
+
+        if (response.success) {
+            //set token here
+            console.log(JSON.stringify(loginState))
+            console.log("login state before:" + loginState.isLogged)
+            setAuthCookie(response.accessToken)
+            // setIsLogged(true);                   
+            setLoginState({ ...loginState, isLogged: true });
+        }
+        else {
+            console.log("wrong")
+            setErrorMsg("Something went wrong...")
+        }
+    }
+
+
 
     return (
         <form className="w-25">
@@ -24,7 +61,7 @@ const SignIn = ({ errorMsg, submitHandler }) => {
                 />
             </div>
             <button type="submit" className="btn btn-primary"
-                onClick={(e) => submitHandler(e, email, password)}
+                onClick={(e) => logInSubmitHandler(e)}
             >Submit</button>
             {errorMsg && <span className={"alert alert-danger"} role="alert">{errorMsg}</span>}
         </form>
