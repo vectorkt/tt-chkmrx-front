@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import PieChart from "../PieChart/PieChart";
 import VerticalBarChart from "../VerticalBarChart/VerticalBarChart";
 

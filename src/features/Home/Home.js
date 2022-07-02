@@ -4,6 +4,7 @@ import Loading from "../../components/Elements/Loading/Loading";
 import SignUp from "../../components/SignUp/SignUp";
 import { getAuth, getLogs } from "../../utils/api/api";
 import HomePanel from "./HomePanel/HomePanel";
+import { isListDifferent } from "./utils/homeUtils";
 
 const Home = () => {
 
@@ -31,10 +32,7 @@ const Home = () => {
         }
     }
 
-    const searchHandler = (value) => {
-
-        setSearchValue(value)
-    }
+    
 
     useEffect(() => {
         (async () => {
@@ -47,22 +45,10 @@ const Home = () => {
     }, [isLogged])
 
 
-    const isListDifferent = () => {
-        const projects = latestLogs.map(l => l.project);
 
-        const filteredProjects = filteredLogs
-            .map(l => l.project)
-            .filter(p => p.toLowerCase().includes(searchValue.toLowerCase()));
+    const updateFilteredLogs = () => {
 
-        const isListDifferent = JSON.stringify(projects) !== JSON.stringify(filteredProjects);
-
-        return isListDifferent;
-
-    }
-
-    const updateFilteredLogs = () => {   
-
-        if (isListDifferent()) {
+        if (isListDifferent(searchValue, latestLogs, filteredLogs)) {
 
             const filtered = latestLogs.filter(
                 (item) => {
@@ -87,21 +73,17 @@ const Home = () => {
             {isLogged ?
                 (
                     latestLogs ?
-                
+
                         <>
                             <div className={"d-flex justify-content-center align-items-center mb-4"}>
                                 <Input
                                     value={searchValue}
-                                    handler={searchHandler}
+                                    handler={(value) => setSearchValue(value)}
                                     placeholder={"Find a project.."}
                                     className={"w-50"}
                                 />
                             </div>
-                            <HomePanel
-                                // searchValue={searchValue}
-                                // searchHandler={searchHandler}
-                                // latestLogs={getFilteredLogs(latestLogs, searchValue)}
-                                {...{ filteredLogs }}
+                            <HomePanel {...{ filteredLogs }}
                             />
                         </>
 
