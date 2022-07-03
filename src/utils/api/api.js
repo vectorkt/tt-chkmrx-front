@@ -1,7 +1,6 @@
 import axios from "axios";
-import sha256 from 'crypto-js/sha256';
-import Base64 from 'crypto-js/enc-base64';
 import { getAuthCookie } from "../cookies/cookies";
+import { hashPassword } from "../hash/hash";
 
 
 
@@ -60,7 +59,7 @@ const getAuth = async (user, password) => {
         user:
         {
             "user": user,
-            "password": Base64.stringify(sha256(password))
+            "password": hashPassword(password)
         }
     };
 
