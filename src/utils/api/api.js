@@ -23,6 +23,7 @@ const getTitles = async () => {
     }
     catch (err) {
         console.log(err)
+        return null;
     }
 
 }
@@ -49,6 +50,7 @@ const getLogs = async (project = "") => {
     }
     catch (err) {
         console.log(err)
+        return null;
     }
 }
 
@@ -78,6 +80,7 @@ const getAuth = async (email, password) => {
     }
     catch (err) {
         console.log(err)
+        return err;
     }
 }
 

@@ -15,7 +15,7 @@ const SignIn = () => {
         event.preventDefault();
 
         const response = await getAuth(email, password);
-
+        console.log(response)
         if (response.success) {
             setAuthCookie(response.accessToken);
             setLoginCookie(true);
