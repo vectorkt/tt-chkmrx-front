@@ -55,11 +55,11 @@ const getLogs = async (project = "") => {
 }
 
 
-const getAuth = async (email, password) => {
+const getAuth = async (user, password) => {
     const body = {
         user:
         {
-            "email": email,
+            "user": user,
             "password": Base64.stringify(sha256(password))
         }
     };
