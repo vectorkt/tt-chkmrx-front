@@ -16,7 +16,8 @@ The bad:
 - The result is a lack of integration and E2E tests. This is not a result of inability nor inexperience, merely a lack of knowledge and a limited timeframe.
 
 The ugly:
-- The code is not as good as I'd like. That said, code that ships, not code that's perfect.
+- The code is not as good as I'd like. There are still plenty of unresolved warnings, for example.
+- That said, code that ships, not code that's perfect.
 - Not a talented designer, though I've put in a bit of work towards the Boostrap classes. Note that I use color inversion on my screen, therefore the color scheme on a client machine will be quite ugly. This can be rapidly solved.
 
 The backend can be found [here](https://github.com/vectorkt/tt-chkmrx-back)
