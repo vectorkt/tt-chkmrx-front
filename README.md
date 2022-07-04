@@ -12,7 +12,7 @@ The good:
 
 The bad:
 - Given the limited time, it was implemented in classic JS rather than Typescript. I am experience with typed languages and familiar with Typescript, it should pose no problems given a longer timeframe.
-- I was able to mock the axios(api call library), though not the context. Mocking context apparently requires a separate library, which would have added an extra day.
+- I was able to mock the axios(api call library), though not the context and the canvas for the charts. Mocking context apparently requires a separate library, which would have added an extra day.
 - The result is a lack of integration and E2E tests. This is not a result of inability nor inexperience, merely a lack of knowledge and a limited timeframe.
 
 The ugly:

@@ -2,7 +2,10 @@ import sha256 from 'crypto-js/sha256';
 import Base64 from 'crypto-js/enc-base64';
 import { HmacSHA1, HmacSHA384 } from 'crypto-js';
 
-
+/**
+ * The trouble with adding a salt to the password is that inevitably that salt needs to be stored somewhere.
+ * I am curios if this approach suffices as a replacement and defense against rainbow tables.
+ */
 const hashPassword = (password) => {
 
     const one = Base64.stringify(sha256(password))
