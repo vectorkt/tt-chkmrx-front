@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-
 import { getLogs } from "../../utils/api/api";
 import { generateTextFile } from "./utils/projectUtils";
 import ProjectPanel from "./ProjectPanel/ProjectPanel";
@@ -65,11 +64,10 @@ const Project = () => {
                         <Loading size={"10rem"} />
 
                 )
+
                 :
-                <Navigate replace to="/home" />
-                // <Navigate replace to="/home" />
-                // <Redirect to="/" />
-                // <SignUp errorMsg={errorMsg} submitHandler={logInSubmitHandler} />
+
+                <Navigate replace to="/" />
             }
         </>
 

@@ -17,7 +17,6 @@ const SignOut = () => {
         <ul className="navbar-nav ms-auto">
             <li className="nav-item">
                 <Link className="nav-link active" onClick={signOutHandler} to="/">Sign Out</Link>
-                {/* <a className="nav-link active" aria-current="page" href="#">Home</a> */}
             </li>
         </ul>
 

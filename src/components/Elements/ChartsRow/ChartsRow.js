@@ -7,7 +7,9 @@ const ChartsRow = ({ title, timeSlice, item, }) => {
     return (
         <div className={"card mb-4 p-3 d-flex flex-row align-items-center"}>
 
-            <h1 className={"display-6 text-primary"}>{title}</h1>
+            <h1 className={"display-6 text-primary"}>
+                {title}
+            </h1>
 
             <PieChart
                 className={"w-25"}

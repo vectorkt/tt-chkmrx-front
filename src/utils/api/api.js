@@ -69,7 +69,6 @@ const getAuth = async (user, password) => {
                 body,
                 {
                     headers: {
-                        // 'Authorization': 'Basic xxxxxxxxxxxxxxxxxxx',
                         'Content-Type': 'application/json'
                     }
                 }

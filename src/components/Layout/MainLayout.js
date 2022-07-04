@@ -18,10 +18,10 @@ const MainLayout = () => {
 
 
     useEffect(() => {
-        if (loginState.isLogged) {            
+        if (loginState.isLogged) {
             fetchTitles()
         }
-        else{
+        else {
             setTitles(null)
         }
 
@@ -30,13 +30,12 @@ const MainLayout = () => {
 
     return (
         <>
-            {/* {titles ? <Navbar isLoggedIn={loginState.isLogged} titles={titles} /> : <p>Loading...</p>} */}
             <Navbar isLoggedIn={loginState.isLogged} titles={titles} />
 
-            <div className="container-md d-flex flex-column justify-content-center">
-                <p>Hello Layout</p>
-                <br />
+            <div className="container-md d-flex flex-column justify-content-center mt-4">                
+
                 <Outlet />
+
             </div>
         </>
     )

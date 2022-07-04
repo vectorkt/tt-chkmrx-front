@@ -25,10 +25,15 @@ const Navbar = ({ isLoggedIn, titles }) => {
                         </li>
                         {titles && titles.map(
                             title =>
+
                                 <FadeIn key={uniqid()} transitionDuration={500} delay={250}>
+
                                     <li key={uniqid()} className="nav-item">
+
                                         <Link className="nav-link" to={`/projects/${title}`}>{title}</Link>
+
                                     </li>
+
                                 </FadeIn>
                         )}
 

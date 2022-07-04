@@ -26,7 +26,7 @@ const Table = ({ className, header, body, data, rowClickHandler, hoverEnterHandl
                             key={uniqid()}
                             onClick={rowClickHandler ? rowClickHandler : null}
                             onMouseEnter={hoverEnterHandler ? hoverEnterHandler : null}
-                            // onMouseLeave={hoverLeaveHandler ? hoverLeaveHandler : null}
+                            onMouseLeave={hoverLeaveHandler ? hoverLeaveHandler : null}
                             style={(rowClickHandler || hoverEnterHandler) ? { cursor: "pointer" } : null}
                             data={data[index]}
                         >

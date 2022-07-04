@@ -53,13 +53,6 @@ const Home = () => {
     }
         , [searchValue])
 
-
-    // useEffect((()=>{
-    //     console.log("att the time")
-    //     console.log(getAuthCookie())
-    //     console.log(getLoginCookie())
-    // }))    
-
     return (
         <>
             {loginState.isLogged ?
@@ -69,7 +62,6 @@ const Home = () => {
                         <>
                             <div className={"d-flex justify-content-center align-items-center mb-4"}>
                                 <Input
-                                    // ref={searchInput}
                                     autoFocus={true}
                                     value={searchValue}
                                     handler={(value) => setSearchValue(value)}
@@ -77,14 +69,18 @@ const Home = () => {
                                     className={"w-50"}
                                 />
                             </div>
-                            <HomePanel {...{ filteredLogs }}
-                            />
+
+                            <HomePanel {...{ filteredLogs }} />
+
                         </>
 
                         :
+
                         <Loading size={"10rem"} />
                 )
+
                 :
+                
                 <SignIn />}
         </>
     )

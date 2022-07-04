@@ -30,23 +30,34 @@ const SignIn = () => {
         <div className={"d-flex justify-content-center align-items-center mb-4"}>
             <form className="card p-4 w-25">
                 <div className="mb-2">
-                    <label htmlFor="exampleInputEmail1" className="form-label">User</label>
-                    <input autoFocus type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+
+                    <label htmlFor="InputUser" className="form-label">User</label>
+
+                    <input autoFocus type="text" className="form-control" id="InputUser"
                         value={email}
                         onChange={e => { setEmail(e.target.value) }}
                     />
+
                     {errorMsg && <div id="emailHelp" className="form-text" style={{ color: "red" }}>{errorMsg}</div>}
+
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1"
+
+                    <label htmlFor="InputPassword" className="form-label">Password</label>
+
+                    <input type="password" className="form-control" id="InputPassword"
                         value={password}
                         onChange={e => { setPassword(e.target.value) }}
                     />
+
                 </div>
+
                 <button type="submit" className="btn btn-primary"
                     onClick={(e) => logInSubmitHandler(e)}
-                >Submit</button>
+                >
+                    Submit
+                </button>
+                
             </form>
         </div>
     )
