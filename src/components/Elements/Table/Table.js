@@ -1,7 +1,17 @@
 import React from "react";
 import uniqid from 'uniqid';
 
-
+/**
+ * The project panel displaying summarized data for a particular project.
+ * It contains a top chart, a table, and a bottom chart.
+ * @param className String, additional classes.
+ * @param header List<String>, the list of headers to display.
+ * @param body List<List<String>>, matrix of string to display.
+ * @param data List<List<String>>, data associated with each row..
+ * @param rowClickHandler Function, executed when clicking on a row.
+ * @param hoverEnterHandler Function, executed when hovering on a row.
+ * @param hoverLeaveHandler Function, executed when leaving the row with the cursor.
+ */
 const Table = ({ className, header, body, data, rowClickHandler, hoverEnterHandler, hoverLeaveHandler }) => {
 
     return (

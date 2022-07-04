@@ -8,6 +8,12 @@ import { LoginContext } from "../../App";
 import SignIn from "../../components/SignIn/SignIn";
 import { getAuthCookie, getLoginCookie } from "../../utils/cookies/cookies";
 
+
+/**
+ * The home feature, dispalying either the sign in or latest reports.
+ * If the user is logged in, it fetches and stores the list of reports.
+ * The search input filters out the list of reports to the one desired by the user.
+ */
 const Home = () => {
 
     const { loginState, setLoginState } = useContext(LoginContext);
@@ -15,11 +21,6 @@ const Home = () => {
     const [filteredLogs, setFilteredLogs] = useState(null);
     const [searchValue, setSearchValue] = useState('');
 
-    // const searchInput = useRef();
-
-    // const focusInput = () => {
-    //     searchInput.current.focus();
-    // };
 
     const fetchLogs = async () => {
         if (loginState.isLogged) {

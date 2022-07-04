@@ -6,6 +6,13 @@ import ProjectPanel from "./ProjectPanel/ProjectPanel";
 import Loading from "../../components/Elements/Loading/Loading";
 import { LoginContext } from "../../App";
 
+
+/**
+ * The project feature displaying summarized data for a particular project.
+ * It contains a top chart, a table, and a bottom chart.
+ * Hovering over a table row will display the bottom chart.
+ * Clicking on a row will generate a .txt summary for the user.
+ */
 const Project = () => {
 
     let params = useParams()

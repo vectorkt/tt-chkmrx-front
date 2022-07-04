@@ -23,10 +23,16 @@ ChartJS.register(
 );
 
 
+/**
+ * Generates a canvas with multiple charts
+ * @param className String, additional classes.
+ * @param labels List<String>,labels for the charts i.e. {['Scan Coverage %', 'Scan Coverage LOC %']}
+ * @param type List<String>, the types of charts desired i.e. ["bar","line"]
+ * @param timeSlice List<Generic>, generates x-axis labels for the charts.
+ * @param data List<List<Integer>>, a matrix of integers to be used as data.
+ */
 
 const MixedChart = ({ className, labels, types, timeSlices, data }) => {
-
-
 
     const backgroundColors = footPrintColors;
 

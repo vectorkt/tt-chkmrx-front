@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { LoginContext } from "../../App";
 import { removeAuthCookie, removeLoginCookie } from "../../utils/cookies/cookies";
 
+/**
+ * The sign out component and functionality for the page.
+ * If clicked, it redirects to home, clears all cookies, and sets the login status to false.
+ */
 const SignOut = () => {
 
     const { loginState, setLoginState } = useContext(LoginContext);

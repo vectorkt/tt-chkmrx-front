@@ -4,6 +4,15 @@ import MixedChart from "../../../components/Elements/MixedChart/MixedChart";
 import Table from "../../../components/Elements/Table/Table";
 import { getCoverageData, getFileData, getTableBody, getTableData, getTableHeaders, getTimeSlices } from "../utils/projectUtils";
 
+/**
+ * The project panel displaying summarized data for a particular project.
+ * It contains a top chart, a table, and a bottom chart.
+ * @param logs List<Log>, the various logs to display.
+ * @param details Log, if passed, will display a chart row for a particular Log.
+ * @param rowClickHandler Function, executed when clicked on a row..
+ * @param rowClickHandler Function, the various logs to display.
+ * @param filteredLogs List<Log>, the various logs to display.
+ */
 const ProjectPanel = ({ logs, details, rowClickHandler, hoverHandler }) => {
     return (
         <>

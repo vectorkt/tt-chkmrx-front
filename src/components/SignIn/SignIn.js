@@ -3,6 +3,11 @@ import { LoginContext } from "../../App";
 import { getAuth } from "../../utils/api/api";
 import { setAuthCookie, setLoginCookie } from "../../utils/cookies/cookies";
 
+/**
+ * The sign in component and functionality for the page.
+ * If input is submitted, this component makes an API call to the backend for the security token.
+ * It then updates the cookies: one with the authorization token and the other with a login status.
+ */
 const SignIn = () => {
 
     const { loginState, setLoginState } = useContext(LoginContext);

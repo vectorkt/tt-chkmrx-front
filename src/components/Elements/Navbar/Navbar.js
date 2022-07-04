@@ -4,6 +4,12 @@ import uniqid from 'uniqid';
 import SignOut from "../../SignOut/SignOut";
 import FadeIn from 'react-fade-in';
 
+
+/**
+ * The Navbar component renders two different versions if logged in or not.
+ * @param isLoggedIn Boolean, enables the Latest Release and SignOut or just Sign In, respectively.
+ * @param titles List<String>, generates links dynamically
+ */
 const Navbar = ({ isLoggedIn, titles }) => {
 
 

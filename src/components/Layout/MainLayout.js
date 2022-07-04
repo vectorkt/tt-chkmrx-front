@@ -6,6 +6,12 @@ import Navbar from "../Elements/Navbar/Navbar";
 import { LoginContext } from "../../App";
 
 
+
+/**
+ * The main layout for the page, it uses the LoginContext to verify if the user is logged in or not.
+ * If the user is logged in, the MainLayout fetches and displays the titles, as well as remounts the navbar.
+ */
+
 const MainLayout = () => {
 
     const [titles, setTitles] = useState(null);

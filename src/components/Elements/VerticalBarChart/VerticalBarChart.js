@@ -20,7 +20,14 @@ ChartJS.register(
     Legend
 );
 
-
+/**
+ * Generates a vertical bar chart.
+ * @param className String, additional classes.
+ * @param title String, additional classes.
+ * @param labels List<String>, the list of labels to display.
+ * @param data List<List<Integer>>, matrix of integers, the data to be displayed.
+ * @param timeSlice List<Generic>, generates x-axis labels for the chart.
+ */
 const VerticalBarChart = ({ className, title, labels, data, timeSlices }) => {
 
     const options = {

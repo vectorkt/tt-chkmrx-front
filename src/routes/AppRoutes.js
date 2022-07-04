@@ -4,6 +4,9 @@ import MainLayout from "../components/Layout/MainLayout";
 import Home from "../features/Home/Home";
 import Project from "../features/Project/Project";
 
+/**
+ * Basic router component for the app.
+ */
 const AppRoutes = () => {
 
     return (

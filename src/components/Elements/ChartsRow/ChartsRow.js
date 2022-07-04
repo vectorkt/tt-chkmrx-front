@@ -2,6 +2,13 @@ import React from "react";
 import PieChart from "../PieChart/PieChart";
 import VerticalBarChart from "../VerticalBarChart/VerticalBarChart";
 
+
+/**
+ * A row of two charts, a pie and a vertical bar.
+ * @param title String, the title to display.
+ * @param timeSlice List<Generic>, generates a x-axis label for the bar chart.
+ * @param item Object<Log>, for the properties of the object. . 
+ */
 const ChartsRow = ({ title, timeSlice, item, }) => {
 
     return (

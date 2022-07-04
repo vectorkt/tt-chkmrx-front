@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * A basic loading spinner
+ * @param size String, boostrap class i.e. "w-50"
+ */
+
 const Loading = ({ size }) => {
     return (
         <div className="text-center">

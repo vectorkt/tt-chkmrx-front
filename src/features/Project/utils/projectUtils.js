@@ -37,35 +37,7 @@ const getTableData = (list) => {
 
 }
 
-const getTableHeaders2 = (list) => {
 
-    let result = [list[0].language, ...list.map(a => a.version)];
-    return result;
-
-}
-
-
-
-const getTableBody2 = (list) => {
-
-    let scanCoverage = ["Scan Coverage", ...list.map(a => a.scanCoverage + "%")];
-    let totalFiles = ["Total Files", ...list.map(a => a.totalFiles)];
-    let goodFiles = ["Good Files", ...list.map(a => a.goodFiles)];
-    let partiallyGoodFiles = ["Partially Good Files", ...list.map(a => a.partiallyGoodFiles)];
-    let badFiles = ["Bad Files", ...list.map(a => a.badFiles)];
-
-    let body = [
-        scanCoverage,
-        totalFiles,
-        goodFiles,
-        partiallyGoodFiles,
-        badFiles,
-
-    ];
-
-
-    return body;
-}
 
 
 const getTimeSlices = (list) => {

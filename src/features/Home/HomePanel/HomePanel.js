@@ -4,6 +4,11 @@ import uniqid from 'uniqid';
 import { Link } from "react-router-dom";
 import FadeIn from 'react-fade-in';
 
+
+/**
+ * The home panel dispalying the latest project reports
+ * @param filteredLogs List<Log>, the various logs to display.
+ */
 const HomePanel = ({ filteredLogs }) => {
 
     return (
